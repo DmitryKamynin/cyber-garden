@@ -17,8 +17,14 @@ class CaseList(generics.ListCreateAPIView):
 
 
 class UserProfileList(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileList, self).get_context_data(**kwargs)
+        context['user_data'] = User.objects.all()
+        print(context)
+        return context
 
 
 class TeamList(generics.ListCreateAPIView):
@@ -42,6 +48,13 @@ class UserProfileListCreateView(generics.ListCreateAPIView):
 
 
 class UserProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
+
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [IsOwnerProfileOrReadOnly, IsAuthenticated]
+
+
+class MentorsList(generics.ListAPIView):
+    queryset = UserProfile.objects.filter(role="Ментор")
+    serializer_class = UserProfileSerializer
+
