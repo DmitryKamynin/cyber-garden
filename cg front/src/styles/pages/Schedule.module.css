@@ -1,0 +1,38 @@
+.wrapper{
+    width: calc(100% - 220px);
+}
+.title{
+    padding: 10px;
+    width: calc(100% - 220px);
+    position: fixed;
+    top:0px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    color:#fff;
+    background-color: #198c57;
+}
+    .timeWrapper{
+        margin-top: 46px;
+        display: flex;
+    }
+        
+
+.theSmallest, .isSmall , .isSmaller , .isCurrent{
+    
+}
+.theSmallest{
+    font-size: 18px;
+    color:rgba(0, 0, 0, 0.1);
+}
+.isSmall{
+    font-size: 19px;
+    color:rgba(0, 0, 0, 0.3);
+}
+.isSmaller{
+    font-size: 20px;
+    color:rgba(0, 0, 0, 0.6);
+}
+.isCurrent{
+    font-size: 21px;
+}
