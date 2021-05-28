@@ -6,6 +6,13 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
+pillow = "*"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
+psycopg2-binary = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 
