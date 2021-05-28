@@ -1,0 +1,9 @@
+.wrapper{
+    margin: auto;
+    padding: 0px 20px;
+    width: 100%;
+}
+.contentWrapper{
+    margin:auto;
+    max-width: 100%;
+}

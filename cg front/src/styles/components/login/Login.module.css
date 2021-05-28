@@ -1,0 +1,30 @@
+.dialogContentBg{
+    background-color: #198c57;
+    color: #fff !important;
+}
+.dialogContentContent{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    align-items: center;
+}
+    .field{
+        outline: none;
+        color: #fff;
+        width: 100%;
+        display: block;
+        background-color: transparent;
+        border: 2px solid #fdbf72;
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 8px;
+        margin: 10px 0px;
+    }
+    .fieldError{
+        border-color: #6b1f1f !important;
+    }
+    .textError{
+        position: absolute; 
+        color: #6b1f1f;
+        font-size: 12px;
+        top: -5px;
+    }
