@@ -10,11 +10,15 @@ import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
+
     <GlobalStateContext>
-        <BrowserRouter>
-        	<App />
-        </BrowserRouter>
+
+          <BrowserRouter>
+          	<App />
+          </BrowserRouter>
+
     </GlobalStateContext>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

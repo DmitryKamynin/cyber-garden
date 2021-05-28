@@ -9,11 +9,8 @@ import styles from '../../styles/components/login/Login.module.css';
 import MaskedInput from 'react-text-mask';
 
 
-
-export default function Login() {
-
+export default function Login({control}) {
     const [visible, setVisible] = useState(false);
-
 
     const phoneRegExp = /^(\+7|[78])(\s?|\-?)(\(\d{3}\)|\d{3})(\-?|\s?)\d{3}(\-?|\s?)\d{2}(\-?|\s?)\d{2}$/;
     const validationSchema = Yup.object().shape( { 
@@ -28,8 +25,12 @@ export default function Login() {
         repeatedPassword: '',
     }
 
+    const { isRegister, setRegister } = control;
     return (
-        <Dialog open>
+        <Dialog 
+            open={isRegister}
+            onClose={() => setRegister(false)}
+        >
             <Formik
                 initialValues={initValues}
                 validationSchema={validationSchema}
@@ -101,7 +102,7 @@ export default function Login() {
                             <Button type='submit'>
                                 Зарегестрироваться
                             </Button>
-                            <Button>
+                            <Button onClick={() => setRegister(false)}>
                                 Закрыть окно
                             </Button>
                         </DialogActions>

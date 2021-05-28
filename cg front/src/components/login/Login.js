@@ -10,7 +10,7 @@ import MaskedInput from 'react-text-mask';
 
 
 
-export default function Login() {
+export default function Login({control}) {
 
     const [visible, setVisible] = useState(false);
 
@@ -25,8 +25,12 @@ export default function Login() {
         password: '',
     }
 
+    const {isLogin, setLogin} = control;
     return (
-        <Dialog open>
+        <Dialog 
+            open={isLogin}
+            onClose={() => setLogin(false)}
+        >
             <Formik
                 initialValues={initValues}
                 validateOnChange={false}
@@ -76,7 +80,11 @@ export default function Login() {
                             <div style ={{position: 'relative'}}>
                                 <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
 
-                                <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'0px', cursor:'pointer'}}/>
+                                <VisibilityIcon 
+                                    onMouseDown={() => setVisible(true)} 
+                                    onMouseUp={() => setVisible(false)} 
+                                    style={{position:'absolute', top: '17px', right:'0px', cursor:'pointer'}}
+                                />
                             </div>
 
                         </DialogContent>
@@ -88,7 +96,7 @@ export default function Login() {
                             <Button type='submit'>
                                 Войти
                             </Button>
-                            <Button>
+                            <Button  onClick={() => setLogin(false)}>
                                 Закрыть окно
                             </Button>
                         </DialogActions>

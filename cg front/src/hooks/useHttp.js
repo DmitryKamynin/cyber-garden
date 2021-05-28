@@ -22,6 +22,7 @@ export const useHttp = () => {
         console.error(error, 'FETCH ERROR')
         setLoading(false);
         setError(error);
+        return { error, ok:false };
       }
     },
     [],
