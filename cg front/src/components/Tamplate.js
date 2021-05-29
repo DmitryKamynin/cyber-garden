@@ -82,7 +82,7 @@ export default function Tamplate({children}) {
                 {children}
             </div>
 
-            <Register control={{isRegister, setRegister}}/>
+            <Register control={{isRegister, setRegister, setLogin}}/>
             <Login control={{isLogin, setLogin}}/>
         </>
     )

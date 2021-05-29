@@ -11,13 +11,16 @@ import useAuth from '../../hooks/useAuth';
 import styles from '../../styles/components/login/Login.module.css';
 
 export default function Login({control}) {
-    const { isError, isLoading, registerHandler } = useAuth();
+    const {  registerHandler } = useAuth();
     const [visible, setVisible] = useState(false);
+
+    const [message, setMessage] = useState(null);
+    const [resultRegister, setResultRegister] = useState(null);
 
     const phoneRegExp = /^(\+7|[78])(\s?|\-?)(\(\d{3}\)|\d{3})(\-?|\s?)\d{3}(\-?|\s?)\d{2}(\-?|\s?)\d{2}$/;
     const validationSchema = Yup.object().shape( { 
         username: Yup.string().matches(phoneRegExp, 'Некорректный номер телефона').required('Номер телефона обязателен'),
-        password: Yup.string().min(8, "Пароль должен состоять минимум из 8 символов").required('Пароль обязателен'),
+        password: Yup.string().min(4, "Пароль должен состоять минимум из 4 символов").required('Пароль обязателен'),
         repeatedPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Пароли не совпадают!').required('Подтвердите пароль'),
     } );
 
@@ -27,91 +30,138 @@ export default function Login({control}) {
         repeatedPassword: '',
     }
 
-    const { isRegister, setRegister } = control;
+    const { isRegister, setRegister, setLogin } = control;
+
     return (
-        <Dialog 
-            open={isRegister}
-            onClose={() => setRegister(false)}
-        >
-            <Formik
-                initialValues={initValues}
-                validationSchema={validationSchema}
-                validateOnChange={false}
-                validateOnBlur={false}
-                onSubmit={ async ( values, api ) => {
-                        // delete values.repeatedPassword;
-                        await registerHandler(values)
-                        api.setSubmitting(false);
-                    }
-                }
+        <>
+            <Dialog 
+                open={isRegister}
+                onClose={() => setRegister(false)}
             >
-                {({errors, touched}) => (
-                
-                <Form>
-                   
-                        <DialogTitle
-                            classes={{
-                                root: styles.dialogContentBg,
-                            }}
-                        >
-                            Зарегистрироваться на самом крутом Хакатоне 
-                        </DialogTitle> 
-                        <DialogContent
-                            classes={{
-                                root: `${styles.dialogContentBg} ${styles.dialogContentContent}`,
-                            }}
-                        >   
-                            <label htmlFor='username'>Номер телефона</label>
+                <Formik
+                    initialValues={initValues}
+                    validationSchema={validationSchema}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                    onSubmit={ async ( values, api ) => {
+                            const { ok, data } = await registerHandler(values);
+                            api.setSubmitting(false);
 
-                            <div style ={{position: 'relative'}}>
-                                <Field
-                                    name='username'
-                                    render={
-                                        ({field}) => <MaskedInput
-                                            {...field}
-                                            className={`${styles.field} ${errors.phone ? styles.fieldError : null}`} 
-                                            mask={['+', '7', '(', /\d/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/,] }
-                                            />
-                                    }
-                                />
+                            setResultRegister(true);
+                            if(ok) setRegister(false);
+                            if(!ok){ 
+                                setMessage(data.username || data.password)
+                            };
+                        }
+                    }
+                >
+                    {({errors, touched}) => (
+                    
+                    <Form>
+                       
+                            <DialogTitle
+                                classes={{
+                                    root: styles.dialogContentBg,
+                                }}
+                            >
+                                Зарегистрироваться на самом крутом Хакатоне 
+                            </DialogTitle> 
+                            <DialogContent
+                                classes={{
+                                    root: `${styles.dialogContentBg} ${styles.dialogContentContent}`,
+                                }}
+                            >   
+                                <label htmlFor='username'>Номер телефона</label>
+    
+                                <div style ={{position: 'relative'}}>
+                                    <Field
+                                        name='username'
+                                        render={
+                                            ({field}) => <MaskedInput
+                                                {...field}
+                                                className={`${styles.field} ${errors.username ? styles.fieldError : null}`} 
+                                                mask={['+', '7', '(', /\d/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/,] }
+                                                />
+                                        }
+                                    />
+    
+                                    {errors.username && touched.username ? <div className={styles.textError}>{errors?.username}</div> : null}
+                                </div>
+    
+                                <label htmlFor='password'>Создайте пароль</label>
+    
+                                <div style ={{position: 'relative'}}>
+                                    <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
+    
+                                    <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}/>
+    
+                                    {errors.password && touched.password ? <div className={styles.textError}>{errors?.password}</div> : null}
+                                </div>
+                                
+                                <label htmlFor='repeatedPassword'>Повторите пароль</label>
+    
+                                <div style ={{position: 'relative'}}>
+                                    <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.repeatedPassword ? styles.fieldError : null}`} name='repeatedPassword'/>
+    
+                                    {errors.repeatedPassword && touched.repeatedPassword ? <div className={styles.textError}>{errors?.repeatedPassword}</div> : null}
+                                </div>
+    
+                            </DialogContent>
+                            <DialogActions  
+                                classes={{
+                                    root: styles.dialogContentBg,
+                                }}
+                            >
+                                <Button type='submit'>
+                                    Зарегестрироваться
+                                </Button>
+                                <Button type='button' onClick={() => setRegister(false)}>
+                                    Закрыть окно
+                                </Button>
+                            </DialogActions>
+                    </Form>
+                    )}
+                </Formik>
+            </Dialog>
 
-                                {errors.phone && touched.phone ? <div className={styles.textError}>{errors?.phone}</div> : null}
-                            </div>
+            <Dialog
+                open={resultRegister}
+                onClose={() => {
+                    setResultRegister(false);
+                    setMessage(null);
+                }}
+            >
+                <DialogTitle 
+                    classes={{
+                        root: styles.dialogContentBg,
+                    }}
+                >
+                    {message?.map(item => <>{item}<br/></>) || 'Успешная регистрация!'}
+                </DialogTitle>
 
-                            <label htmlFor='password'>Создайте пароль</label>
+                <DialogActions 
+                    classes={{
+                        root: styles.dialogContentBg,
+                    }}
+                >
 
-                            <div style ={{position: 'relative'}}>
-                                <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
+                    {message ? null :
+                    <Button type='button' onClick={() => {
+                        setResultRegister(false);
+                        setLogin(true);
+                    }}>
+                        Авторизоваться
+                    </Button>}
 
-                                <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}/>
+                    <Button type='button' onClick={() => {
+                        setResultRegister(false);
+                        setMessage(null);
+                    }}>
+                        Закрыть окно
+                    </Button>
 
-                                {errors.password && touched.password ? <div className={styles.textError}>{errors?.password}</div> : null}
-                            </div>
-                            
-                            <label htmlFor='repeatedPassword'>Повторите пароль</label>
-
-                            <div style ={{position: 'relative'}}>
-                                <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.repeatedPassword ? styles.fieldError : null}`} name='repeatedPassword'/>
-
-                                {errors.repeatedPassword && touched.repeatedPassword ? <div className={styles.textError}>{errors?.repeatedPassword}</div> : null}
-                            </div>
-
-                        </DialogContent>
-                        <DialogActions  
-                            classes={{
-                                root: styles.dialogContentBg,
-                            }}
-                        >
-                            <Button type='submit'>
-                                Зарегестрироваться
-                            </Button>
-                            <Button onClick={() => setRegister(false)}>
-                                Закрыть окно
-                            </Button>
-                        </DialogActions>
-                </Form>
-                )}
-            </Formik>
-        </Dialog>
+                </DialogActions>
+            </Dialog>
+        </>
     )
 }

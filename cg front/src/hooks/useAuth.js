@@ -8,37 +8,40 @@ export default function useAuth() {
     const { dispatch } = useContext(GlobalContext);
     const { request } = useHttp();
 
-    const [isError, setError] = useState(false)
-
     const handleAuth = async (values, handler) => {
         values.username = values.username.replace(/(\(|\))/gi, '');
 
         if(handler === 'register'){
             const result = await request(`${config.apiUrl}/auth/users/`, 'POST', values);
-            const {data, ok, error} = result;
-            if(ok) dispatch({ type: 'SUCCES_REGISTER' })
-            else setError(error)
+            const {data, ok} = result;
+            if(ok) dispatch({ type: 'SUCCESS_REGISTER' });
+
+            return { ok, data }
         }
         if(handler === 'login'){
             const create = await request(`${config.apiUrl}/auth/jwt/create/`, 'POST', values);
 
             if(create.ok){
-                const result = await request(`${config.apiUrl}/auth/users/me/`, 'GET', null, {
+                const getUserId = await request(`${config.apiUrl}/auth/users/me/`, 'GET', null, {
                     'Authorization':`Bearer ${create.data.access}`,
                 });
-                const { data, ok, error } = result;
-                if(ok) dispatch({ type: 'SUCCESS_LOGIN', data, })
-                else setError(error)
+
+                const getUserData = await request(`${config.apiUrl}/profile/${getUserId.data.id}`, 'GET', null, {
+                    'Authorization':`Bearer ${create.data.access}`,
+                });
+                
+                if(getUserData.ok) dispatch({ type: 'SUCCESS_LOGIN', data: getUserData.data, })
+
+                return { ok: getUserData.ok, data: getUserData.data }
             }
-            else setError(create.error)
+            return { ok: create.ok, data: create.data }
         }
     };
 
-    const registerHandler = async ( values ) => { await  handleAuth(values, 'register') };
-    const loginHandler = async ( values ) => { await  handleAuth(values, 'login') };
+    const registerHandler = async ( values ) => await handleAuth(values, 'register') ;
+    const loginHandler = async ( values ) => await handleAuth(values, 'login') ;
 
     return {
-        isError,
         registerHandler,
         loginHandler,
     }
