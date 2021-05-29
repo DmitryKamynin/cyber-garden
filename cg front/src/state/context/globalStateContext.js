@@ -9,7 +9,7 @@ export const GlobalContext = createContext();
 
 const GlobalStateContext = ({ children }) => {
     const { request, isLoading, isError } = useHttp();
-    const [globalState, dispatch] = useReducer(globalStateReducer, {ready: false, errorInit: false, });
+    const [globalState, dispatch] = useReducer(globalStateReducer, {ready: false, errorInit: false, userData: null, });
 
     useEffect(() => {
       (async () => {

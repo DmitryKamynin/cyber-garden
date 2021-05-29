@@ -14,7 +14,7 @@ import styles from '../../styles/pages/UserAccount.module.css';
 
 export default function UserAccount() {
     const { request } = useHttp();
-    const { GlobalState, dispatch } = useContext(GlobalContext);
+    const { globalState, dispatch } = useContext(GlobalContext);
 
 
     const phoneRegExp = /^(\+7|[78])(\s?|\-?)(\(\d{3}\)|\d{3})(\-?|\s?)\d{3}(\-?|\s?)\d{2}(\-?|\s?)\d{2}$/;
@@ -26,6 +26,7 @@ export default function UserAccount() {
         last_name: '',
         first_name: '',
         patronymic: '',
+        username: globalState?.userData?.username || '',
     }
 
     return (
@@ -60,15 +61,15 @@ export default function UserAccount() {
                             <div className={styles.fieldWrapper}>
 
                                 <div style ={{position: 'relative'}}>
-                                    <Field name='phone' render={
+                                    <Field name='username' render={
                                         ({field}) => <MaskedInput
                                             {...field}
                                             placeholder='Телефон *'
-                                            className={`${styles.field} ${errors.phone ? styles.fieldError : null}`} 
+                                            className={`${styles.field} ${errors.username ? styles.fieldError : null}`} 
                                             mask={['+', '7', '(', /\d/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/,] }
                                             />
                                     }/>
-                                    {errors.phone && touched.phone ? <div className={styles.textError}>{errors?.phone}</div> : null}
+                                    {errors.username && touched.username ? <div className={styles.textError}>{errors?.username}</div> : null}
                                 </div>
 
                                 <div>

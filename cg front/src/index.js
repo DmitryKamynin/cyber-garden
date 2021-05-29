@@ -13,9 +13,9 @@ ReactDOM.render(
 
     <GlobalStateContext>
 
-          <BrowserRouter>
+          <HashRouter>
           	<App />
-          </BrowserRouter>
+          </HashRouter>
 
     </GlobalStateContext>
     
