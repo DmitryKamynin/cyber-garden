@@ -10,7 +10,7 @@ export default function useAuth() {
 
 
     const handleAuth = async (values, handler) => {
-        if(values.username) values.username = values?.username?.replace(/(\(|\))/gi, '');
+        if(values?.username) values.username = values?.username?.replace(/(\(|\))/gi, '');
 
         if(handler === 'register'){
             const result = await request(`${config.apiUrl}/auth/users/`, 'POST', values);

@@ -63,3 +63,23 @@
             font-size: 12px;
             top: 40px;
         }
+    .dialogContentBg{
+        background-color: #fff;
+        color: #000 !important;
+    }
+
+    .codeWrapper{
+        display: flex;
+        align-items: center;
+    }
+        .btnCode{
+            background-color: #327C17 !important;
+            border-radius: 4px !important;
+            color: #fff !important;
+        }
+        .code{
+            margin-left: 10px;
+            color:#358F15;
+            font-size: 16px;
+            line-height: 20px;
+        }
