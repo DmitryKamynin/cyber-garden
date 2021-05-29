@@ -7,14 +7,14 @@ import routes from '../constants/routes';
 import PublicRouter from './PublicRouter';
 
 
-import Cases from '../pages/Cases'
+import Cases from '../pages/Cases';
 import AboutHackathon from '../pages/AboutHackathon';
-import HackathonMap from '../pages/HackathonMap'
-import Mentors from '../pages/Mentors'
-import MyTeam from '../pages/MyTeam'
-import Partners from '../pages/Partners'
-import Schedule from '../pages/Schedule'
-import UserAccount from '../pages/UserAccount'
+import HackathonMap from '../pages/HackathonMap';
+import Mentors from '../pages/Mentors';
+import MyTeam from '../pages/user/MyTeam';
+import Partners from '../pages/Partners';
+import Schedule from '../pages/Schedule';
+import UserAccount from '../pages/user/UserAccount';
 
 
 const AppRoutes = () => {

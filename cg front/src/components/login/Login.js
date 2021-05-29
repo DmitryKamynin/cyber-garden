@@ -81,7 +81,7 @@ export default function Login({control}) {
                                 <VisibilityIcon 
                                     onMouseDown={() => setVisible(true)} 
                                     onMouseUp={() => setVisible(false)} 
-                                    style={{position:'absolute', top: '17px', right:'0px', cursor:'pointer'}}
+                                    style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}
                                 />
                             </div>
 

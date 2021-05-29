@@ -35,11 +35,6 @@ export default function Tamplate({children}) {
                         Зарегистрироваться
                     </div>
 
-                <Link to='/MyTeam'>
-                    <div className={styles.linkElem}>
-                        Моя команда
-                    </div>
-                </Link>
                 <Link to='/Cases'>
                     <div className={styles.linkElem}>
                         Кейсы

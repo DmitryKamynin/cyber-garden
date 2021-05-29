@@ -1,12 +1,11 @@
-.dialogContentBg{
-    background-color: #198c57;
-    color: #fff !important;
-}
-.dialogContentContent{
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    align-items: center;
-}
+.form{
+    padding: 0px 40px;
+} 
+    .fieldWrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+
     .field{
         box-sizing: border-box;
         outline: none;

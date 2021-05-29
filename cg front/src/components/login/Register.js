@@ -83,7 +83,7 @@ export default function Login({control}) {
                             <div style ={{position: 'relative'}}>
                                 <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
 
-                                <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'0px', cursor:'pointer'}}/>
+                                <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}/>
 
                                 {errors.password && touched.password ? <div className={styles.textError}>{errors?.password}</div> : null}
                             </div>

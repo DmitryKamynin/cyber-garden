@@ -22,7 +22,8 @@
 .pageContent{
     position: relative;
     margin: auto;
-    padding: 0px 20px;
+    padding: 0px;
     width: 100%;
     padding-left: 220px;
+    box-sizing: border-box;
 }
