@@ -2,10 +2,10 @@
     position: fixed;
     left:0px;
     top: 0px;
-    background-color: #198c57;
+    background-color: #1B7049;
     padding: 20px;
     height: 100%;
-    width: 220px;
+    width: 159px;
     box-sizing: border-box;
     z-index: 99;
 }
@@ -13,17 +13,21 @@
         text-decoration: none;  
     }
     .linkElem{
-        color: #fff;
-        font-size: 18px;
-        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        color: #85A190;
+        font-size: 14px;
+        margin-bottom: 28px;
         cursor: pointer;
     }
-
+        .linkElem > img{
+            margin-right: 8px;
+        }
 .pageContent{
     position: relative;
     margin: auto;
     padding: 0px;
     width: 100%;
-    padding-left: 220px;
+    padding-left: 159px;
     box-sizing: border-box;
 }

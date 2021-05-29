@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie';
-import { futureTime } from '../config';
+import { futureTime } from '../utils';
 
-export const cookiesClear = () => Cookies.remove('token_app');
+export const cookiesClear = () => Cookies.remove('token');
 
 /* expires in futureTime(60) 60 minutes */
-export const cookiesSet = (name, time = 3600) =>
+export const cookiesSet = (name, time = 1440) =>
   Cookies.set('token', name, {
     expires: futureTime(time),
   });

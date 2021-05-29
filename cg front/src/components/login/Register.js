@@ -64,13 +64,29 @@ export default function Login({control}) {
                                     root: styles.dialogContentBg,
                                 }}
                             >
-                                Зарегистрироваться на самом крутом Хакатоне 
+                                <Button
+                                    onClick={() => {
+                                        setLogin(true);
+                                        setRegister(false);
+                                    }}
+                                    classes={{
+                                        root: styles.innactivBtn,
+                                    }}>
+                                    Войти
+                                </Button>
+                                <Button
+                                    classes={{
+                                        root: styles.btn,
+                                    }}>
+                                    Регистрация
+                                </Button>
                             </DialogTitle> 
                             <DialogContent
                                 classes={{
                                     root: `${styles.dialogContentBg} ${styles.dialogContentContent}`,
                                 }}
                             >   
+                                <h2 className={styles.title}>Для регистрации укажите необходимые данные</h2>
                                 <label htmlFor='username'>Номер телефона</label>
     
                                 <div style ={{position: 'relative'}}>
@@ -93,7 +109,7 @@ export default function Login({control}) {
                                 <div style ={{position: 'relative'}}>
                                     <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
     
-                                    <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}/>
+                                    <VisibilityIcon onMouseDown={() => setVisible(true)} onMouseUp={() => setVisible(false)} style={{position:'absolute', top: '7px', right:'15px', cursor:'pointer'}}/>
     
                                     {errors.password && touched.password ? <div className={styles.textError}>{errors?.password}</div> : null}
                                 </div>
@@ -112,11 +128,13 @@ export default function Login({control}) {
                                     root: styles.dialogContentBg,
                                 }}
                             >
-                                <Button type='submit'>
-                                    Зарегестрироваться
+                                <Button 
+                                    classes={{root: styles.btnSucces}}
+                                    type='submit'>
+                                    Далее
                                 </Button>
                                 <Button type='button' onClick={() => setRegister(false)}>
-                                    Закрыть окно
+                                    Отмена
                                 </Button>
                             </DialogActions>
                     </Form>
@@ -146,11 +164,14 @@ export default function Login({control}) {
                 >
 
                     {message ? null :
-                    <Button type='button' onClick={() => {
+                    <Button 
+                        classes={{root: styles.btnSucces}}
+                        type='button' 
+                        onClick={() => {
                         setResultRegister(false);
                         setLogin(true);
                     }}>
-                        Авторизоваться
+                        Войти
                     </Button>}
 
                     <Button type='button' onClick={() => {

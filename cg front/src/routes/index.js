@@ -5,7 +5,7 @@ import { Switch } from 'react-router';
 import routes from '../constants/routes'; 
 
 import PublicRouter from './PublicRouter';
-
+import PrivateRouter from './PrivateRouter';
 
 import Cases from '../pages/Cases';
 import AboutHackathon from '../pages/AboutHackathon';
@@ -27,10 +27,10 @@ const AppRoutes = () => {
             <PublicRouter exact path={routes.getAboutHackathon()} component={AboutHackathon} />
             <PublicRouter exact path={routes.getHackathonMap()} component={HackathonMap} />
             <PublicRouter exact path={routes.getMentors()} component={Mentors} />
-            <PublicRouter exact path={routes.getMyTeam()} component={MyTeam} />
+            <PrivateRouter exact path={routes.getMyTeam()} component={MyTeam} />
             <PublicRouter exact path={routes.getPartners()} component={Partners} />
             <PublicRouter exact path={routes.getSchedule()} component={Schedule} />
-            <PublicRouter exact path={routes.getUserAccount()} component={UserAccount} />
+            <PrivateRouter exact path={routes.getUserAccount()} component={UserAccount} />
             
         </Switch>
  

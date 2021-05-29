@@ -1,15 +1,14 @@
-// import {  } from '../../constants' 
-
 export const globalStateReducer = (currentState, { type, data, schedule }) => {
     switch (type) {
-        case 'SUCCESS_LOGIN':
+        case 'LOGOUT':
+            return {
+                ...currentState,
+                userData:null,
+            }
+        case 'SUCCESS_AUTH':
             return {
                 ...currentState,
                 userData: data,
-            }
-        case 'SUCCESS_REGISTER':
-            return {
-                ...currentState,    
             }
         case 'SUCCESS_INIT_APP':
             return {

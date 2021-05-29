@@ -1,0 +1,23 @@
+.wrapper a{
+    text-decoration: none;
+    margin-bottom: 50px;
+}
+.btn, .innactivBtn{
+    border-color: transparent !important;
+    color: #1B7049 !important;
+    font-size: 16px !important;
+    padding-bottom: 4px !important;
+    border-bottom: 2px solid #1B7049 !important;
+    margin-right: 20px !important;
+    font-weight: 700 !important;
+    border-radius: 0px !important;
+}
+.innactivBtn{
+    border: none !important;
+    color: #85A190 !important;
+}
+.btnSucces{
+    background-color: #327C17 !important;
+    border-radius: 4px !important;
+    color: #fff !important;
+}

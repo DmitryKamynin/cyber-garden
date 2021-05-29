@@ -27,7 +27,8 @@ export default function Login({control}) {
         password: '',
     }
 
-    const {isLogin, setLogin} = control;
+    const {isLogin, setLogin, setRegister } = control;
+
     if(resultLogin) return <Redirect to='/UserAccount'/>
     return (
         <>
@@ -62,14 +63,30 @@ export default function Login({control}) {
                                     root: styles.dialogContentBg,
                                 }}
                             >
-                                Войти на самый крутой Хакатон
+                                <Button
+                                    classes={{
+                                        root: styles.btn,
+                                    }}>
+                                    Войти
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setLogin(false);
+                                        setRegister(true);
+                                    }}
+                                    classes={{
+                                        root: styles.innactivBtn,
+                                    }}>
+                                    Регистрация
+                                </Button>
                             </DialogTitle> 
                             <DialogContent
                                 classes={{
                                     root: `${styles.dialogContentBg} ${styles.dialogContentContent}`,
                                 }}
                             >   
-                                <label htmlFor='phone'>Номер телефона</label>
+                                <h2 className={styles.title}>Чтобы войти на самый крутой Хакатон введите свои данные</h2>
+
     
                                 <div style ={{position: 'relative'}}>
                                     <Field
@@ -77,6 +94,7 @@ export default function Login({control}) {
                                         render={
                                             ({field}) => <MaskedInput
                                                 {...field}
+                                                placeholder='Номер телефона'
                                                 className={`${styles.field} ${errors.username ? styles.fieldError : null}`} 
                                                 mask={['+', '7', '(', /\d/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/,] }
                                                 />
@@ -86,15 +104,14 @@ export default function Login({control}) {
                                     {errors.username && touched.username ? <div className={styles.textError}>{errors?.username}</div> : null}
                                 </div>
     
-                                <label htmlFor='password'>Введите пароль</label>
     
                                 <div style ={{position: 'relative'}}>
-                                    <Field type={visible ? 'text' : 'password'} className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
+                                    <Field type={visible ? 'text' : 'password'} placeholder='Пароль' className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password'/>
     
                                     <VisibilityIcon 
                                         onMouseDown={() => setVisible(true)} 
                                         onMouseUp={() => setVisible(false)} 
-                                        style={{position:'absolute', top: '17px', right:'15px', cursor:'pointer'}}
+                                        style={{position:'absolute', top: '7px', right:'15px', cursor:'pointer'}}
                                     />
                                 </div>
     
@@ -104,11 +121,11 @@ export default function Login({control}) {
                                     root: styles.dialogContentBg,
                                 }}
                             >
-                                <Button type='submit'>
+                                <Button classes={{root: styles.btnSucces}} type='submit'>
                                     Войти
                                 </Button>
                                 <Button  onClick={() => setLogin(false)}>
-                                    Закрыть окно
+                                    Отмена
                                 </Button>
                             </DialogActions>
                     </Form>
