@@ -13,7 +13,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = '__all__'
-        #fields = ('id', 'user', 'role', 'description')
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -30,4 +29,8 @@ class EventScheduleSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'date_time')
 
 
+class PartnersSerializers(serializers.ModelSerializer):
 
+    class Meta:
+        model = Partners
+        fields = ('id', 'title', 'description', 'image')

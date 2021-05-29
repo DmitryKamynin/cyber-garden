@@ -7,7 +7,3 @@ class HackConfig(AppConfig):
 
     def ready(self):
         import hack.signal
-
-
-
-
