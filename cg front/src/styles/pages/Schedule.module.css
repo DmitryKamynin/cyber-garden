@@ -28,21 +28,16 @@
 .theSmallest, .isSmall , .isSmaller , .isCurrent{
     transition: .3s;
     margin: 10px 0px;
+    font-size: 26px;
 }
 .theSmallest{
-    font-size: 17px;
     color:rgba(0, 0, 0, 0.1);
 }
 .isSmall{
-    font-size: 19px;
     color:rgba(0, 0, 0, 0.3);
 }
 .isSmaller{
-    font-size: 20px;
     color:rgba(0, 0, 0, 0.6);
-}
-.isCurrent{
-    font-size: 21px;
 }
 .empty{
     display: none;

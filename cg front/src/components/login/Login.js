@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-
+import MaskedInput from 'react-text-mask';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
+import useAuth from '../../hooks/useAuth';
+
 import styles from '../../styles/components/login/Login.module.css';
-import MaskedInput from 'react-text-mask';
-
-
 
 export default function Login({control}) {
-
     const [visible, setVisible] = useState(false);
-
+    const { isError, isLoading, loginHandler } = useAuth();
 
     const phoneRegExp = /^(\+7|[78])(\s?|\-?)(\(\d{3}\)|\d{3})(\-?|\s?)\d{3}(\-?|\s?)\d{2}(\-?|\s?)\d{2}$/;
     const validationSchema = Yup.object().shape( { 
@@ -37,8 +35,8 @@ export default function Login({control}) {
                 validationSchema={validationSchema}
                 onSubmit={ async ( values, api ) => {
                         console.log(values);
+                        await loginHandler(values);
                         api.setSubmitting(false);
-
                     }
                 }
             >

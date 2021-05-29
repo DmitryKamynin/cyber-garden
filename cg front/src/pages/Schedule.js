@@ -2,8 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import {GlobalContext} from '../state/context/globalStateContext';
 
-import {useHttp} from '../hooks/useHttp';
-
 import Tamplate from '../components/Tamplate'
 
 import styles from '../styles/pages/Schedule.module.css';
@@ -31,11 +29,11 @@ const TimeScale = ({sortedSchedule, currentTime}) => {
         if( currentTime === index ) return styles.isCurrent;
         if( currentTime - index === 3) return styles.theSmallest;
         if( currentTime - index === 2) return styles.isSmall;
-        if( currentTime - index === 1) return styles.isSmaller;
+        if( currentTime - index === 1) return styles.isCurrent;
         else{
             if( index - currentTime === 3) return styles.theSmallest;
             if( index - currentTime === 2) return styles.isSmall;
-            if( index - currentTime === 1) return styles.isSmaller;
+            if( index - currentTime === 1) return styles.isCurrent;
             else return styles.empty;
         }
     }
@@ -65,7 +63,6 @@ const TimeScale = ({sortedSchedule, currentTime}) => {
 };
 
 export default function Schedule() {
-    const { request } = useHttp();
     const { globalState, dispatch } = useContext(GlobalContext);
 
     const [currentTime, setCurrentTime] = useState(0);

@@ -15,3 +15,5 @@ export const sortSchedule = (a, b) => {
     if(new Date(a.date_time) < new Date(b.date_time)) return -1;
     if(new Date(a.date_time) === new Date(b.date_time)) return 0;
 }
+
+export const futureTime = (minutes) => new Date(new Date().getTime() + minutes * 60 * 1000);
