@@ -15,7 +15,7 @@ export default function AboutHackathon() {
     return (
         <>
             <Tamplate>
-                AboutHackathon page
+                <div className={styles.wrapper}>Это наикрутейший Хакатон в вашей жизни!</div>
             </Tamplate>
         </>
     )

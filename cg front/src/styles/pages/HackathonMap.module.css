@@ -1,0 +1,94 @@
+.wrapper{
+    margin:0px 40px;
+    margin-top: 40px;
+}
+    .map{
+        position: relative;
+        width: 951px;
+        height: 461px;
+    }
+    .teamTitle{
+        margin-top: 5px;
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .teamDescription{
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .tooltipRoot{
+        background-color: #358F15 !important;
+    }
+        .table{
+            position:absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .borderImg{
+            width: 925px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 435px;
+            position: absolute;
+            top: 13px;
+            left: 14px;
+        }
+        .lest1{
+            width: 170px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 79px;
+            position: absolute;
+            top: 14px;
+            left: 392px;
+        }
+        .lest2{
+            width: 79px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 60px;
+            position: absolute;
+            top: 200px;
+            left: 815px;
+        }
+        .lest3{
+            width: 60px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 79px;
+            position: absolute;
+            top: 328px;
+            left: 673px;
+        }
+        .lest4{
+            width: 60px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 79px;
+            position: absolute;
+            top: 328px;
+            left: 220px;
+        }
+        .lest5{
+            width: 79px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left;
+            height: 60px;
+            position: absolute;
+            top: 200px;
+            left: 59px;
+        }

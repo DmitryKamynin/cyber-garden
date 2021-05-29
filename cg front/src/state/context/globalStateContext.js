@@ -27,6 +27,9 @@ const GlobalStateContext = ({ children }) => {
 
         const result = await request(`${config.apiUrl}/event-schedule/?format=json`);
         const {data, ok} = result;
+
+        const teams = await request(`${config.apiUrl}/team/`);
+        if(teams.ok) dispatch({type:'SUCCESS_TEAM', data: teams.data})    
         
         if(ok) dispatch({type:'SUCCESS_INIT_APP', schedule:data})
         else dispatch({type:'ERROR_INIT_APP',})
