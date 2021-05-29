@@ -21,7 +21,7 @@ export default function Tamplate({children}) {
     const [hash, setHash] = useState('#/');
 
     const { userData } = globalState;
-console.log(globalState)
+
     return (
         <>
             <div className={styles.navBar}>
@@ -37,14 +37,30 @@ console.log(globalState)
                     <img src={`icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
                 </div>}
 
+                {!(userData?.role === 'Ментор') ? 
+                <>
+                    <Link to='/Session'>
+                        <div style={location.pathname === '/Session' ? {color:'#fff'} : {}} className={styles.linkElem}>
+                            <img src={`icons/attention${location.pathname === '/Session' ? ' (копия)' : ''}.svg`}/> Менторские сессии
+                        </div>
+                    </Link>
+                    <Link to='/Teams'>
+                        <div style={location.pathname === '/Teams' ? {color:'#fff'} : {}} className={styles.linkElem}>
+                            <img src={`icons/attention${location.pathname === '/Teams' ? ' (копия)' : ''}.svg`}/> Команды
+                        </div>
+                    </Link>
+                </> : null
+                }
+
+
                 <Link to='/Mentors'>
                     <div style={location.pathname === '/Mentors' ? {color:'#fff'} : {}} className={styles.linkElem}>
                         <img src={`icons/star${location.pathname === '/Mentors' ? ' (копия)' : ''}.svg`}/>Менторы 
                     </div>
                 </Link>
                 <Link to='/'>
-                    <div style={location.pathname === '/' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/calendar${location.pathname === '/' ? ' (копия)' : ''}.svg`}/>Расписание
+                    <div style={location.pathname === '/' || location.pathname === '/StaticSchedule' ? {color:'#fff'} : {}} className={styles.linkElem}>
+                        <img src={`icons/calendar${location.pathname === '/' || location.pathname === '/StaticSchedule' ? ' (копия)' : ''}.svg`}/>Расписание
                     </div>
                 </Link>
                 <Link to='/HackathonMap'>
