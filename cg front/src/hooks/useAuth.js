@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import {GlobalContext} from '../state/context/globalStateContext';
 import config from '../config';
 
@@ -11,17 +11,26 @@ export default function useAuth() {
     const [isError, setError] = useState(false)
 
     const handleAuth = async (values, handler) => {
+        values.username = values.username.replace(/(\(|\))/gi, '');
+
         if(handler === 'register'){
-            const result = await request(`${config.apiUrl}/auth/users`, 'POST', values);
+            const result = await request(`${config.apiUrl}/auth/users/`, 'POST', values);
             const {data, ok, error} = result;
             if(ok) dispatch({ type: 'SUCCES_REGISTER' })
             else setError(error)
         }
         if(handler === 'login'){
-            const result = await request(`${config.apiUrl}/auth/`, 'POST', values);
-            const {data, ok, error} = result;
-            if(ok) dispatch({ type: 'SUCCES_LOGIN', data, })
-            else setError(error)
+            const create = await request(`${config.apiUrl}/auth/jwt/create/`, 'POST', values);
+
+            if(create.ok){
+                const result = await request(`${config.apiUrl}/auth/users/me/`, 'GET', null, {
+                    'Authorization':`Bearer ${create.data.access}`,
+                });
+                const { data, ok, error } = result;
+                if(ok) dispatch({ type: 'SUCCESS_LOGIN', data, })
+                else setError(error)
+            }
+            else setError(create.error)
         }
     };
 

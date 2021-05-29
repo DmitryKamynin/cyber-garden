@@ -54,7 +54,7 @@ export default function Login({control}) {
                                 root: styles.dialogContentBg,
                             }}
                         >
-                            Зарегестрироваться на самом крутом Хакатоне 
+                            Зарегистрироваться на самом крутом Хакатоне 
                         </DialogTitle> 
                         <DialogContent
                             classes={{

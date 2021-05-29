@@ -15,11 +15,11 @@ export default function Login({control}) {
 
     const phoneRegExp = /^(\+7|[78])(\s?|\-?)(\(\d{3}\)|\d{3})(\-?|\s?)\d{3}(\-?|\s?)\d{2}(\-?|\s?)\d{2}$/;
     const validationSchema = Yup.object().shape( { 
-        phone: Yup.string().matches(phoneRegExp, 'Некорректный номер телефона').required('Номер телефона обязателен'),
+        username: Yup.string().matches(phoneRegExp, 'Некорректный номер телефона').required('Номер телефона обязателен'),
     } );
 
     const initValues = {
-        phone: '',
+        username: '',
         password: '',
     }
 
@@ -60,17 +60,17 @@ export default function Login({control}) {
 
                             <div style ={{position: 'relative'}}>
                                 <Field
-                                    name='phone'
+                                    name='username'
                                     render={
                                         ({field}) => <MaskedInput
                                             {...field}
-                                            className={`${styles.field} ${errors.phone ? styles.fieldError : null}`} 
+                                            className={`${styles.field} ${errors.username ? styles.fieldError : null}`} 
                                             mask={['+', '7', '(', /\d/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/,] }
                                             />
                                     }
                                 />
 
-                                {errors.phone && touched.phone ? <div className={styles.textError}>{errors?.phone}</div> : null}
+                                {errors.username && touched.username ? <div className={styles.textError}>{errors?.username}</div> : null}
                             </div>
 
                             <label htmlFor='password'>Введите пароль</label>
