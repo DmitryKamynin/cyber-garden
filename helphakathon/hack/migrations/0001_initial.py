@@ -31,6 +31,16 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
                 ('date_time', models.DateTimeField()),
+                ('date_time', models.DateTimeField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Partners',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=255, verbose_name='Название партнера')),
+                ('description', models.TextField(blank=True, null=True, verbose_name='Описание')),
+                ('image', models.ImageField(upload_to='partners_image')),
             ],
         ),
         migrations.CreateModel(
@@ -46,12 +56,16 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('first_name', models.CharField(blank=True, max_length=100)),
+                ('last_name', models.CharField(blank=True, max_length=100)),
+                ('patronymic', models.CharField(blank=True, max_length=100)),
                 ('role', models.CharField(choices=[('Developer', 'Разработчик'), ('Mentor', 'Ментор'), ('Organizer-Admin', 'Организатор-админ'), ('Sponsor', 'Спонсор')], default='Разработчик', max_length=30, verbose_name='Роль')),
                 ('description', models.TextField(blank=True, null=True, verbose_name='Описание')),
                 ('telegram', models.CharField(blank=True, max_length=100)),
                 ('city', models.TextField(verbose_name='Город')),
                 ('date_joined', models.DateTimeField(auto_now_add=True)),
                 ('updated_on', models.DateTimeField(auto_now=True)),
+                ('image', models.ImageField(upload_to='user_image')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
             ],
         ),

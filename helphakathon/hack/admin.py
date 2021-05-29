@@ -1,6 +1,5 @@
 from django.contrib import admin
 from hack.models import *
-# Register your models here.
 
 
 class CaseAdmin(admin.ModelAdmin):
@@ -12,8 +11,8 @@ class CaseAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     fields = ['user', 'role', 'description', 'telegram', 'phone_number', 'city']
-    class Meta:
 
+    class Meta:
         verbose_name = "Пользователь"
 
 
@@ -35,4 +34,3 @@ admin.site.register(Case, CaseAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(EventSchedule, EventScheduleAdmin)
-

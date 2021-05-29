@@ -22,12 +22,16 @@ class Case(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    patronymic = models.CharField(max_length=100, blank=True)
     role = models.CharField(max_length=30, choices=ROLE_CHOICES, default="Разработчик", verbose_name="Роль")
     description = models.TextField(blank=True, null=True, verbose_name="Описание")
     telegram = models.CharField(max_length=100, blank=True)
     city = models.TextField(verbose_name="Город")
     date_joined = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='user_image')
 
     def __str__(self):
         return self.user.username
@@ -45,6 +49,15 @@ class Team(models.Model):
 class EventSchedule(models.Model):
     title = models.CharField(max_length=255)
     date_time = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+
+class Partners(models.Model):
+    title = models.CharField(max_length=255, verbose_name="Название партнера")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
+    image = models.ImageField(upload_to='partners_image')
 
     def __str__(self):
         return self.title

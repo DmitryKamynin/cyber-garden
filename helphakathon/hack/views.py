@@ -58,3 +58,7 @@ class MentorsList(generics.ListAPIView):
     queryset = UserProfile.objects.filter(role="Ментор")
     serializer_class = UserProfileSerializer
 
+
+class PartnersList(generics.ListCreateAPIView):
+    queryset = Partners.objects.all()
+    serializer_class = PartnersSerializers
