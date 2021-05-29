@@ -6,4 +6,5 @@ urlpatterns = [
     path('user-profile/', UserProfileList.as_view()),
     path('team/', TeamList.as_view()),
     path('event-schedule/', EventScheduleList.as_view()),
+    path('mentors', MentorsList.as_view())
 ]
