@@ -13,6 +13,8 @@ psycopg2-binary = "*"
 djangorestframework-simplejwt = "*"
 djoser = "*"
 social-auth-app-django = "*"
+uwsgi = "*"
+django-cookies-samesite = "*"
 
 [dev-packages]
 

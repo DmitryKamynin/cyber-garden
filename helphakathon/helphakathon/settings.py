@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,35 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--l*viud_#tv%7f@&-s!a7f0s0nqb#w*c2&!ote*^^bo8-(b8dj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['185.185.69.68','http://178.155.5.158:3000']
 
 CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
 
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
-    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
-    'djoser'
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django_cookies_samesite.middleware.CookiesSameSite',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -84,13 +64,22 @@ REST_FRAMEWORK = {
 }
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+SESSION_COOKIE_SAMESITE = None
+
+ROOT_URLCONF = 'helphakathon.urls'
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_HEADERS = (
         'Access-Control-Allow-Headers',
         'Access-Control-Allow-Credentials',
     )
 ROOT_URLCONF = 'helphakathon.urls'
-#CORS_ALLOWED_ORIGINS = ["*"]
+CORS_ALLOWED_ORIGINS = ["https://aero.webjox.ru", "http://aero.webjox.ru"]
 #CORS_ALLOWED_ORIGIN_REGEXES = True
+CORS_ORIGIN_WHITELIST=['https://aero.webjox.ru', "https//aero.webjox.ru"]
+SESSION_COOKIE_SAMESITE_FORCE_ALL = True
+SESSION_COOKIE_SAMESITE_FORCE_CORE = False
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -100,6 +89,8 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 CORS_ALLOW_HEADERS = [
+    'Access-Control-Allow-Headers',
+    'Access-Control-Allow-Credentials',
     'accept',
     'accept-encoding',
     'authorization',
@@ -132,12 +123,13 @@ WSGI_APPLICATION = 'helphakathon.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hackathon',
         'USER': 'postgres',
-        'PASSWORD': '123456',
+        'PASSWORD': '2932065',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -153,6 +145,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	'OPTIONS': {
+            	    'min_length': 4,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',

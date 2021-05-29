@@ -5,7 +5,6 @@ from rest_framework import serializers
 class CaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Case
-
         fields = ('id', 'title', 'description', 'image')
 
 
