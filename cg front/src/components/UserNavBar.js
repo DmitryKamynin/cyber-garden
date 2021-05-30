@@ -1,13 +1,18 @@
 import { Button } from '@material-ui/core';
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+
+import {GlobalContext} from 'state/context/globalStateContext';
 
 import styles from '../styles/components/UserNavBar.module.css';
 
 export default function UserNavBar() {
+    const { globalState } = useContext(GlobalContext);
+
     const { logoutHandler } = useAuth();
     const location = useLocation();
+    const { userData } = globalState;
     return (
         <div className={styles.wrapper}>
             
@@ -22,7 +27,7 @@ export default function UserNavBar() {
                     Анкета
                 </Button>
             </Link>
-
+            {!(userData?.role === 'Ментор') ? 
             <Link to='/MyTeam'>
                 <Button
                     classes={ location.pathname === '/MyTeam' ? {
@@ -33,7 +38,10 @@ export default function UserNavBar() {
                 >
                     Моя команда
                 </Button>
-            </Link>
+            </Link> : null
+                }
+
+            
 
             <Button style={{flex: '1 1 100%'}} onClick={logoutHandler}>
                     Выйти

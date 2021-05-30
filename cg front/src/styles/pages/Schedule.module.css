@@ -1,49 +1,96 @@
 .wrapper{
-    width: calc(100% - 220px);
+    width: 100%;
     height: 100%;
     margin-top: 50px;
 }
 .title{
     padding: 10px;
-    width: calc(100% - 220px);
+    width: calc(100% - 158px);
     position: fixed;
     top:0px;
     text-align: center;
     font-size: 22px;
     font-weight: 500;
     color:#fff;
-    background-color: #198c57;
+    background-color: #1B7049;
 }
     .timeWrapper{
         margin-top: 46px;
-        display: grid;
-        grid-template-columns: 0.2fr 1fr;
-        grid-template-rows: 240px;
+        display: flex;
         align-items: center;
-        max-width: 600px;
+        justify-content: flex-start;
         margin: auto;
+        padding: 0px 20px;
     }
+        .timeScale{
+            margin-left: 30px;
+        }
+        .btn{
+            background-color: #327C17 !important;
+            border-radius: 4px !important;
+            color: #fff !important;
+            margin-left: 20px !important;
+            margin-top: 40px !important;
+        }
         
 
-.theSmallest, .isSmall , .isSmaller , .isCurrent{
+.theSmallest, .isSmall , .isSmaller , .isCurrent, .hidden{
     transition: .3s;
     margin: 10px 0px;
     font-size: 26px;
 }
 .theSmallest{
-    color:rgba(0, 0, 0, 0.1);
+    color:rgba(0, 0, 0, 0.5);
 }
 .isSmall{
-    color:rgba(0, 0, 0, 0.3);
+    color:rgba(0, 0, 0, 0.6);
 }
 .isSmaller{
-    color:rgba(0, 0, 0, 0.6);
+    color:rgba(0, 0, 0, 0.7);
+}
+.isCurrent{
+    font-weight: 700;
 }
 .empty{
     display: none;
+}
+.hidden{
+    opacity: 0;
 }
 .scaleLine{
     height: 100%;
     width: 1px;
     background-color: black;
+}
+
+@media screen and (max-width: 480px) {
+    .title{
+        box-sizing: border-box;
+        padding: 10px;
+        width: 100%;
+        position: fixed;
+        top:35px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        color:#fff;
+        background-color: #1B7049;
+    }
+    .timeWrapper{
+        padding-top: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .timeScale{
+        margin-left: 0px;
+    }
+    .btn{
+        margin-top: 20px !important;
+        background-color: #327C17 !important;
+        border-radius: 4px !important;
+        color: #fff !important;
+    }
+    .theSmallest, .isSmall , .isSmaller , .isCurrent, .hidden{
+        font-size: 16px;
+    }
 }
