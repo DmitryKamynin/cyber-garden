@@ -66,7 +66,7 @@ export default function Tamplate({children}) {
                 </> : null
                 }
 
-                {!(userData?.role === 'Ментор') ? 
+                {!(userData?.role === 'Ментор') && userData ? 
                     <>
                         <Link to='/Mentors'>
                             <div style={location.pathname === '/Mentors' ? {color:'#fff'} : {}} className={styles.linkElem}>
