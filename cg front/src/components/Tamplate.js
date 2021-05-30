@@ -43,24 +43,24 @@ export default function Tamplate({children}) {
                 {userData ?
                 <Link to='/UserAccount'>
                     <div style={location.pathname === '/UserAccount' ? {color:'#fff'} : {}} className={`${styles.linkElem}`}>
-                        <img src={`icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
+                        <img src={`/icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
                     </div>
                 </Link>
                     :
                 <div onClick={() => setLogin(true)} style={location.pathname === '/UserAccount' ? {color:'#fff'} : {}} className={`${styles.linkElem}`}>
-                    <img src={`icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
+                    <img src={`/icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
                 </div>}
 
                 {(userData?.role === 'Ментор') ? 
                 <>
                     <Link to='/Session'>
                         <div style={location.pathname === '/Session' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                            <img src={`icons/attention${location.pathname === '/Session' ? ' (копия)' : ''}.svg`}/> Менторские сессии
+                            <img src={`/icons/attention${location.pathname === '/Session' ? ' (копия)' : ''}.svg`}/> Менторские сессии
                         </div>
                     </Link>
                     <Link to='/Teams'>
                         <div style={location.pathname === '/Teams' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                            <img src={`icons/attention${location.pathname === '/Teams' ? ' (копия)' : ''}.svg`}/> Команды
+                            <img src={`/icons/attention${location.pathname === '/Teams' ? ' (копия)' : ''}.svg`}/> Команды
                         </div>
                     </Link>
                 </> : null
@@ -70,13 +70,13 @@ export default function Tamplate({children}) {
                     <>
                         <Link to='/Mentors'>
                             <div style={location.pathname === '/Mentors' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                                <img src={`icons/star${location.pathname === '/Mentors' ? ' (копия)' : ''}.svg`}/>Менторы 
+                                <img src={`/icons/star${location.pathname === '/Mentors' ? ' (копия)' : ''}.svg`}/>Менторы 
                             </div>
                         </Link>
 
                         <Link to='/UserPeriods'>
                             <div style={location.pathname === '/UserPeriods' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                                <img src={`icons/star${location.pathname === '/UserPeriods' ? ' (копия)' : ''}.svg`}/>История сессий 
+                                <img src={`/icons/star${location.pathname === '/UserPeriods' ? ' (копия)' : ''}.svg`}/>История сессий 
                             </div>
                         </Link>
                     </>
@@ -85,27 +85,27 @@ export default function Tamplate({children}) {
                 }
                 <Link to='/'>
                     <div style={location.pathname === '/' || location.pathname === '/StaticSchedule' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/calendar${location.pathname === '/' || location.pathname === '/StaticSchedule' ? ' (копия)' : ''}.svg`}/>Расписание
+                        <img src={`/icons/calendar${location.pathname === '/' || location.pathname === '/StaticSchedule' ? ' (копия)' : ''}.svg`}/>Расписание
                     </div>
                 </Link>
                 <Link to='/HackathonMap'>
                     <div style={location.pathname === '/HackathonMap' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/map${location.pathname === '/HackathonMap' ? ' (копия)' : ''}.svg`}/>Карта
+                        <img src={`/icons/map${location.pathname === '/HackathonMap' ? ' (копия)' : ''}.svg`}/>Карта
                     </div>
                 </Link>
                 <Link to='/Cases'>
                     <div style={location.pathname === '/Cases' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/case${location.pathname === '/Cases' ? ' (копия)' : ''}.svg`}/>Кейсы
+                        <img src={`/icons/case${location.pathname === '/Cases' ? ' (копия)' : ''}.svg`}/>Кейсы
                     </div>
                 </Link>
                 <Link to='/Partners'>
                     <div style={location.pathname === '/Partners' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/partners${location.pathname === '/Partners' ? ' (копия)' : ''}.svg`}/>Партнёры
+                        <img src={`/icons/partners${location.pathname === '/Partners' ? ' (копия)' : ''}.svg`}/>Партнёры
                     </div>
                 </Link>
                 <Link to='/AboutHackathon'>
                     <div style={location.pathname === '/AboutHackathon' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/attention${location.pathname === '/AboutHackathon' ? ' (копия)' : ''}.svg`}/> О хакатоне
+                        <img src={`/icons/attention${location.pathname === '/AboutHackathon' ? ' (копия)' : ''}.svg`}/> О хакатоне
                     </div>
                 </Link>
  

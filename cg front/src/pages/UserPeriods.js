@@ -26,7 +26,7 @@ export default function UserPeriods() {
 
     const { sessions, userData } = globalState;
 
-    const getUsersSessions = sessions.filter(session => session.periods.find(period => period.id_team_id || period.id_team || period.team_id === userData.team.id));
+    const getUsersSessions = sessions.filter(session => session.periods.find(period => period.id_team === userData.team.id));
 
     return (
         <>

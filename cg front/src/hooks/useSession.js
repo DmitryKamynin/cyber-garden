@@ -18,7 +18,7 @@ export default function useSession() {
         session.periods = changedPeriods;
         return session;
       })
-
+      console.log(changedSessions);
       await dispatch({type:'SUCCESS_SESSION', data: changedSessions})
     }
 
@@ -40,7 +40,7 @@ export default function useSession() {
 
     const handleAccess = async (row) => {
       const body = {
-        id_session_id: row.session, 
+        id_session: row.session, 
         success_status: true,
       }
       const sessions = await request(`${config.apiUrl}/period/${row.period}/`, 'PUT', body);
@@ -50,11 +50,11 @@ export default function useSession() {
 
     const handleDenided = async (row) => {
       const body = {
-        id_session_id: row.session,
+        id_session: row.session,
         success_status: false,
         free_status: true,
         comment_team:'',
-        id_team_id: null,
+        id_team: null,
       }
       const sessions = await request(`${config.apiUrl}/period/${row.period}/`, 'PUT', body);
       const { ok, data } = sessions
@@ -63,7 +63,7 @@ export default function useSession() {
 
     const handleMentorComment = async (row, valueSlider, valueComment) => {
       const body = {
-        id_session_id: row.session,
+        id_session: row.session,
         comment_mentor: valueComment,
         mentor_assessment: valueSlider,
       }
@@ -74,9 +74,9 @@ export default function useSession() {
 
     const handleRequestPeriod = async (row, valueComment, userData) => {
       const body = {
-        id_session_id: row.session,
+        id_session: row.session,
         free_status: false,
-        id_team_id: userData?.team?.id,
+        id_team: userData?.team?.id,
         comment_team: valueComment,
       };
       const sessions = await request(`${config.apiUrl}/period/${row.period}/`, 'PUT', body);

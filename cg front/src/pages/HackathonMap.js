@@ -26,30 +26,30 @@ export default function HackathonMap() {
                 <div className={styles.wrapper}>
                      
 
-                     <div className={styles.map} style={{backgroundImage:`url(map.svg)` }}>
+                     <div className={styles.map} style={{backgroundImage:`url(/map.svg)` }}>
                          
                         <div 
-                            style={{backgroundImage:`url(border.svg)`}}
+                            style={{backgroundImage:`url(/border.svg)`}}
                             className={styles.borderImg}
                         />
                         <div 
-                            style={{backgroundImage:`url(lest1.svg)`}}
+                            style={{backgroundImage:`url(/lest1.svg)`}}
                             className={styles.lest1}
                         />
                         <div 
-                            style={{backgroundImage:`url(lest2.svg)`}}
+                            style={{backgroundImage:`url(/lest2.svg)`}}
                             className={styles.lest2}
                         />
                         <div 
-                            style={{backgroundImage:`url(lest3.svg)`}}
+                            style={{backgroundImage:`url(/lest3.svg)`}}
                             className={styles.lest3}
                         />
                         <div 
-                            style={{backgroundImage:`url(lest3.svg)`}}
+                            style={{backgroundImage:`url(/lest3.svg)`}}
                             className={styles.lest4}
                         />
                         <div 
-                            style={{backgroundImage:`url(lest5.svg)`}}
+                            style={{backgroundImage:`url(/lest5.svg)`}}
                             className={styles.lest5}
                         />
                         
@@ -66,7 +66,7 @@ export default function HackathonMap() {
                             }}
                         >
                             <div
-                                style={{backgroundImage:`url(${team ? 'table.svg' : 'disableTable.svg'})`,left: `${table.y}px`, top: `${table.x}px`,}}
+                                style={{backgroundImage:`url(${team ? '/table.svg' : '/disableTable.svg'})`,left: `${table.y}px`, top: `${table.x}px`,}}
                                 className={styles.table}
                             >
                                 {table.id}

@@ -72,7 +72,7 @@ export default function Session() {
                                     return (
 
                                     <TableRow
-                                        key={period.id_team_id}
+                                        key={period.id}
                                         classes={{
                                             selected: styles.selectedRow,   
                                         }} 

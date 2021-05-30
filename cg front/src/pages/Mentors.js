@@ -45,7 +45,7 @@ export default function Mentors() {
 
     
 
-    const mentorSession = [...sessions].filter(session => mentor === session.id_mentor);
+    const mentorSession = sessions.filter(session => mentor === session.id_mentor);
 
     return (
         <>
@@ -66,8 +66,10 @@ export default function Mentors() {
                     </Select>
 
 
-                    {mentorSession.length ? mentorSession.map( session => (
+                    {sessions.length ? sessions.filter(session => mentor === session.id_mentor).map( session => (
+                        
                        <div key={session.id}>
+                           
                         <h3 className={styles.sessionTitle}>{session.title}</h3>
                         <Table>
                             <TableHead>
@@ -78,11 +80,12 @@ export default function Mentors() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {session.periods.map( (period, index) => {
+                                {session?.periods.map( (period, index) => {
+                                   
                                     return (
 
                                     <TableRow
-                                        key={period.id_team_id}
+                                        key={period.id}
                                         classes={{
                                             root: `${period.free_status ? null : !period.success_status ?  styles.taken : styles.reservation}`,
                                             selected: styles.selectedRow,   
@@ -97,11 +100,11 @@ export default function Mentors() {
                                                 <TableCell>Свободно</TableCell>
                                                 <TableCell>
                                                     <Button
-                                                        disabled={!(period.id === row?.period)}
+                                                        disabled={!(period.id === row?.period) || !userData.team.id}
                                                         classes={{root: styles.btnSucces,}}
                                                         onClick={() => setComment(true)}
                                                     >
-                                                        Отправить заявку на период
+                                                        {userData.team.id ? 'Отправить заявку' : 'Вступите в команду'}
                                                     </Button>
                                                 </TableCell>
                                             </>
@@ -163,6 +166,7 @@ export default function Mentors() {
                         classes={{root: styles.btnSucces,}}
                         onClick={async () => {
                             await handleRequestPeriod( row, valueComment, userData );
+                            setRow(null);
                             setComment(false);
                             setThanks(true);
                         }}
@@ -188,7 +192,7 @@ export default function Mentors() {
                 }}
             >
                 <DialogTitle>
-                    Спасибо за оценку!
+                    Заявка отправлена!
                 </DialogTitle>
 
             </Dialog>
