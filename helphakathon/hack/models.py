@@ -34,6 +34,7 @@ class UserProfile(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='user_image', blank=True)
     user_code = models.CharField(max_length=100, blank=True)
+    team = models.JSONField(default={}, blank=True, null=True)
     #user_name = User.objects.get(user__user_id=user)
 
 
@@ -45,6 +46,7 @@ class Team(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     url_git = models.URLField(blank=True, null=True)
+    users = ArrayField(models.JSONField(blank=True, null=True), blank=True, null=True, default={})
 
     def __str__(self):
         return self.title

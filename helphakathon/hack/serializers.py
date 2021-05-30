@@ -1,6 +1,6 @@
 from hack.models import *
 from rest_framework import serializers
-
+from django.contrib.postgres.fields import ArrayField
 
 class CaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,15 +9,18 @@ class CaseSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    role = serializers.CharField(max_length=30, required=False)
     class Meta:
         model = UserProfile
         fields = '__all__'
 
 
 class TeamSerializer(serializers.ModelSerializer):
+    users = ArrayField(models.JSONField(blank=True, null=True), blank=True, null=True, default={})
+    title = serializers.CharField(max_length=255)
     class Meta:
         model = Team
-        fields = ('id', 'title', 'description', 'url_git')
+        fields = ('id', 'title', 'description', 'url_git', 'users')
 
 
 class EventScheduleSerializer(serializers.ModelSerializer):

@@ -1,21 +1,17 @@
-from django.http import HttpResponse
+import uuid
 from django.contrib.auth.models import AnonymousUser
 from hack.serializers import *
-from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics
-from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from hack.models import *
 from rest_framework.permissions import *
-from hack.license import *
+from rest_framework import generics
 from rest_framework import status
-import uuid
-from telegram_bot import usercode
-
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
+
+from hack.models import *
+from hack.license import *
+from telegram_bot import usercode
 
 
 class CaseList(generics.ListCreateAPIView):
@@ -76,6 +72,12 @@ class UserCodeTelegramUpdate(generics.UpdateAPIView):
     serializer_class = UserCodeTelegramSerialize
 
 
+class TeamUpdateDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Team.objects.filter()
+    serializer_class = TeamSerializer
+
+
+
 @api_view(['GET'])
 def create_code(request):
     if request.method == 'GET':
@@ -85,6 +87,25 @@ def create_code(request):
         else:
             UserProfile.objects.filter(user=request.user).update(user_code=user_code)
             return Response({"code": user_code}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def create_team(request):
+    if request.method == 'POST':
+        if request.user == AnonymousUser:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        else:
+            if "description" in request.data:
+                team = Team.objects.create(title=request.data["title"], description=request.data["description"],
+                                           users=[{"id": request.user.id, "username": request.user.username}, ])
+            else:
+                team = Team.objects.create(title=request.data["title"],
+                                           users=[{"id": request.user.id, "username": request.user.username}, ])
+            data = model_to_dict(team)
+            UserProfile.objects.filter(pk=data['users'][0]["id"]).update(team={"id": data["id"], "title": data["title"]})
+
+            return JsonResponse({"team": data}, status=status.HTTP_201_CREATED, safe=False)
+
 
 
 @api_view(['POST'])
