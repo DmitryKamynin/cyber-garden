@@ -15,5 +15,5 @@ urlpatterns = [
     path('session/', Session.as_view()),
     path('session/<int:id_session>/', all_period),
     path('period/', Periods.as_view()),
-    path('period/<int:id_period>/', PeriodsDetails.as_view())
+    path('period/<int:pk>/', PeriodsDetails.as_view())
 ]
