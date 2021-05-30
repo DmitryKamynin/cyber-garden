@@ -15,6 +15,7 @@ djoser = "*"
 social-auth-app-django = "*"
 uwsgi = "*"
 django-cookies-samesite = "*"
+pytelegrambotapi = "*"
 
 [dev-packages]
 

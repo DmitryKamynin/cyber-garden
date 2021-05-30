@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--l*viud_#tv%7f@&-s!a7f0s0nqb#w*c2&!ote*^^bo8-(b8dj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['185.185.69.68','http://178.155.5.158:3000']
 
@@ -129,7 +129,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hackathon',
         'USER': 'postgres',
-        'PASSWORD': '2932065',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
