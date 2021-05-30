@@ -1,5 +1,10 @@
 export const globalStateReducer = (currentState, { type, data, schedule }) => {
     switch (type) {
+        case 'SUCCESS_CREATE':
+            const newState = {...currentState};
+            newState.userData.team = data.team;
+            console.log(newState)
+            return newState;
         case 'SUCCESS_MENTORS':
             return {
                 ...currentState,

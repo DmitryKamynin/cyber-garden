@@ -26,8 +26,8 @@ export default function UserPeriods() {
 
     const { sessions, userData } = globalState;
 
-    const getUsersSessions = sessions.filter(session => session.periods.find(period => period.id_team === userData.team.id));
-
+    const getUsersSessions = sessions.filter(session => session.periods.find(period => (period.id_team_id || period.id_team || period.team_id) === userData.team.id));
+    
     return (
         <>
             <Tamplate>
@@ -48,7 +48,8 @@ export default function UserPeriods() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {session.periods.filter(period => period.id_team_id || period.id_team || period.team_id === userData.team.id).map( (period, index) => {
+                                {session.periods.filter(period => (period.id_team_id || period.id_team || period.team_id) === userData.team.id).map( (period, index) => {
+                                    
                                     return (
 
                                     <TableRow

@@ -49,6 +49,20 @@ export default function useAuth() {
                 return { ok: putUserData.ok, data: putUserData.data }
             }
 
+
+            if(handler === 'create'){
+                const putUserData = await request(`${config.apiUrl}/create_team/`, 'POST', values, {
+                    'Authorization':`Bearer ${cookiesGet()}`,
+            });
+                
+                if(putUserData.ok) dispatch({ type: 'SUCCESS_CREATE', data: putUserData.data, })
+
+                return { ok: putUserData.ok, data: putUserData.data }
+            }
+
+
+
+
         if(handler === 'logout'){
             cookiesClear();
             dispatch({type:'LOGOUT'});
@@ -60,11 +74,13 @@ export default function useAuth() {
     const loginHandler = async ( values ) => await handleAuth(values, 'login');
     const changeHandler = async ( values ) => await handleAuth(values, 'change');
     const logoutHandler = async () => await handleAuth(null, 'logout');
+    const createHandler = async ( values ) => await handleAuth(values, 'create');
 
     return {
         registerHandler,
         loginHandler,
         changeHandler,
         logoutHandler,
+        createHandler,  
     }
 }

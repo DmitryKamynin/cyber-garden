@@ -15,6 +15,7 @@ import styles from '../../styles/pages/UserAccount.module.css';
 import { Button, Dialog, DialogActions, DialogTitle } from '@material-ui/core';
 
 export default function MyTeam() {
+    const { createHandler } = useAuth();
     const [copy, setCopy] = useState(false);
 
     const [message, setMessage] = useState(false);
@@ -25,10 +26,12 @@ export default function MyTeam() {
         // username: Yup.string().matches(phoneRegExp, 'Некорректный номер телефона').required('Номер телефона обязателен'),
     } );
 
+    const { userData } = globalState;
+
     const initValues={
-        title: globalState?.userData?.last_name || '',
-        description: globalState?.userData?.first_name || '',
-    }
+        title: globalState?.userData?.team?.title || '',
+        description: globalState?.userData?.description || '',
+    };
 
     return (
         <>
@@ -39,8 +42,9 @@ export default function MyTeam() {
                     validateOnChange={false}
                     validationSchema={validationSchema}
                     onSubmit={ async (values, api) => {
-                        // const result = await changeHandler(values);
-                        // if(result.ok) setMessage(true);
+                        
+                        const result = await createHandler(values);
+                        if(result.ok) setMessage(true);
                         api.setSubmitting(false);
                     }}
                 >
@@ -53,7 +57,7 @@ export default function MyTeam() {
                             <div className={styles.fieldWrapper}>
 
                                 <div className={styles.fieldContainer} >
-                                    <Field className={styles.field} name='title' placeholder='Классная команда *'/>
+                                    <Field disabled={userData.team.id} className={styles.field} name='title' placeholder='Классная команда *'/>
                                 </div>
 
                             </div>
@@ -65,6 +69,7 @@ export default function MyTeam() {
 
                             <div className={styles.fieldWrapper}>
                                 <Field as='textarea'
+                                    disabled={userData.team.id}
                                     name='description'
                                     style={{height: '100%', maxHeight: '150px', minHeight: '150px'}}
                                     placeholder='Классное описание'
@@ -74,9 +79,9 @@ export default function MyTeam() {
                                 </Field>
                             </div>
 
-                            <Button classes={{root:styles.btnSucces}} disabled={!dirty} type='submit'>
+                           {userData.team.id ? null : <Button classes={{root:styles.btnSucces}} disabled={!dirty} type='submit'>
                                 {dirty ? 'Сохранить' : 'Измените данные'}
-                            </Button>
+                            </Button>}
                         </Form>
                     )}
                 </Formik>
@@ -95,7 +100,7 @@ export default function MyTeam() {
                         root: styles.dialogContentBg,
                     }}
                 >
-                    Данные успешно изменены!
+                    Команда успешно создана!
                 </DialogTitle>
 
                 <DialogActions
