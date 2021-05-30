@@ -1,0 +1,19 @@
+.wrapper{
+    margin:0px 40px;
+    margin-top: 40px;
+}
+    .title,.yourSchedule{
+        color: #242424;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    .yourSchedule{
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .selectedRow{
+        background-color: #1b70498a !important;
+        color: #fff !important
+    }

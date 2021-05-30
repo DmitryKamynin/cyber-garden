@@ -6,7 +6,7 @@ import routes from '../constants/routes';
 
 import PublicRouter from './PublicRouter';
 import PrivateRouter from './PrivateRouter';
-import MentorRouter from './PrivateRouter';
+import MentorRouter from './MentorRouter';
 
 import Cases from '../pages/Cases';
 import AboutHackathon from '../pages/AboutHackathon';
@@ -36,7 +36,7 @@ const AppRoutes = () => {
             <PublicRouter exact path={routes.getPartners()} component={Partners} />
             <PublicRouter exact path={routes.getSchedule()} component={Schedule} />
             <PrivateRouter exact path={routes.getUserAccount()} component={UserAccount} />
-            <PrivateRouter exact path={'/StaticSchedule'} component={StaticSchedule} /> 
+            <PublicRouter exact path={'/StaticSchedule'} component={StaticSchedule} /> 
 
             <MentorRouter exact path={'/Teams'} component={Teams} />    
             <MentorRouter exact path={'/Session'} component={Session} />    

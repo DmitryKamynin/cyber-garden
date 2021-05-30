@@ -62,3 +62,35 @@
     width: 1px;
     background-color: black;
 }
+
+@media screen and (max-width: 480px) {
+    .title{
+        box-sizing: border-box;
+        padding: 10px;
+        width: 100%;
+        position: fixed;
+        top:35px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        color:#fff;
+        background-color: #1B7049;
+    }
+    .timeWrapper{
+        padding-top: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .timeScale{
+        margin-left: 0px;
+    }
+    .btn{
+        margin-top: 20px !important;
+        background-color: #327C17 !important;
+        border-radius: 4px !important;
+        color: #fff !important;
+    }
+    .theSmallest, .isSmall , .isSmaller , .isCurrent, .hidden{
+        font-size: 16px;
+    }
+}
