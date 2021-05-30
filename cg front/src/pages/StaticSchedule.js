@@ -34,7 +34,7 @@ export default function Schedule() {
                 <div className={styles.wrapper}>
                     <div className={styles.title}>Расписание событий самого крутого Хакатона</div>
 
-                    <div className={styles.timeWrapper}>
+                    <div>
 
                         <Table>
                             <TableHead>

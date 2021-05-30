@@ -51,7 +51,7 @@ export default function Tamplate({children}) {
                     <img src={`icons/case${location.pathname === '/UserAccount' ? ' (копия)' : ''}.svg`}/>Кабинет
                 </div>}
 
-                {!(userData?.role === 'Ментор') ? 
+                {(userData?.role === 'Ментор') ? 
                 <>
                     <Link to='/Session'>
                         <div style={location.pathname === '/Session' ? {color:'#fff'} : {}} className={styles.linkElem}>
@@ -66,12 +66,23 @@ export default function Tamplate({children}) {
                 </> : null
                 }
 
+                {!(userData?.role === 'Ментор') ? 
+                    <>
+                        <Link to='/Mentors'>
+                            <div style={location.pathname === '/Mentors' ? {color:'#fff'} : {}} className={styles.linkElem}>
+                                <img src={`icons/star${location.pathname === '/Mentors' ? ' (копия)' : ''}.svg`}/>Менторы 
+                            </div>
+                        </Link>
 
-                <Link to='/Mentors'>
-                    <div style={location.pathname === '/Mentors' ? {color:'#fff'} : {}} className={styles.linkElem}>
-                        <img src={`icons/star${location.pathname === '/Mentors' ? ' (копия)' : ''}.svg`}/>Менторы 
-                    </div>
-                </Link>
+                        <Link to='/UserPeriods'>
+                            <div style={location.pathname === '/UserPeriods' ? {color:'#fff'} : {}} className={styles.linkElem}>
+                                <img src={`icons/star${location.pathname === '/UserPeriods' ? ' (копия)' : ''}.svg`}/>История сессий 
+                            </div>
+                        </Link>
+                    </>
+                    
+                    : null
+                }
                 <Link to='/'>
                     <div style={location.pathname === '/' || location.pathname === '/StaticSchedule' ? {color:'#fff'} : {}} className={styles.linkElem}>
                         <img src={`icons/calendar${location.pathname === '/' || location.pathname === '/StaticSchedule' ? ' (копия)' : ''}.svg`}/>Расписание

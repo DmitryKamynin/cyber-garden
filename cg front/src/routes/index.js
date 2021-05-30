@@ -16,6 +16,7 @@ import MyTeam from '../pages/user/MyTeam';
 import Partners from '../pages/Partners';
 import Schedule from '../pages/Schedule';
 import StaticSchedule from '../pages/StaticSchedule';
+import UserPeriods from '../pages/UserPeriods';
 import UserAccount from '../pages/user/UserAccount';
 
 import Teams from '../pages/mentor/Teams';
@@ -36,6 +37,7 @@ const AppRoutes = () => {
             <PublicRouter exact path={routes.getPartners()} component={Partners} />
             <PublicRouter exact path={routes.getSchedule()} component={Schedule} />
             <PrivateRouter exact path={routes.getUserAccount()} component={UserAccount} />
+            <PrivateRouter exact path={'/UserPeriods'} component={UserPeriods} />
             <PublicRouter exact path={'/StaticSchedule'} component={StaticSchedule} /> 
 
             <MentorRouter exact path={'/Teams'} component={Teams} />    

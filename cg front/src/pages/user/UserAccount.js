@@ -72,15 +72,15 @@ export default function UserAccount() {
 
                             <div className={styles.fieldWrapper}>
 
-                                <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                <div className={styles.fieldContainer} >
                                     <Field className={styles.field} name='last_name' placeholder='Фамилия *'/>
                                 </div>
 
-                                <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                <div className={styles.fieldContainer}>
                                     <Field className={styles.field} name='first_name' placeholder='Имя *'/>
                                 </div>
 
-                                <div style ={{position: 'relative', width: '100%'}}>
+                                <div className={styles.fieldContainer} >
                                     <Field className={styles.field} name='patronymic' placeholder='Отчество *'/>
                                 </div>
 
@@ -88,7 +88,7 @@ export default function UserAccount() {
 
                             <div className={styles.fieldWrapper}>
 
-                                <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                <div className={styles.fieldContainer}>
                                     <Field name='username' render={
                                         ({field}) => <MaskedInput
                                             {...field}
@@ -100,11 +100,11 @@ export default function UserAccount() {
                                     {errors.username && touched.username ? <div className={styles.textError}>{errors?.username}</div> : null}
                                 </div>
 
-                                <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                <div className={styles.fieldContainer}>
                                     <Field className={styles.field} name='city' placeholder='Город *'/>
                                 </div>
 
-                                <div style ={{position: 'relative', width: '100%' }}>
+                                <div className={styles.fieldContainer}>
 
                                         <input 
                                             name='telegram'
@@ -155,12 +155,12 @@ export default function UserAccount() {
 
                                 <div className={styles.fieldWrapper}>
 
-                                    <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                    <div className={styles.fieldContainer}>
                                         <Field className={`${styles.field} ${errors.password ? styles.fieldError : null}`} name='password' type='password' placeholder='Новый пароль *'/>
                                         {errors.password && touched.password ? <div className={styles.textError}>{errors?.password}</div> : null}
                                     </div>
 
-                                    <div style ={{position: 'relative', width: '100%', marginRight: '10px'}}>
+                                    <div className={styles.fieldContainer}>
                                         <Field className={`${styles.field} ${errors.repeatedPassword ? styles.fieldError : null}`} name='repeatedPassword' type='password' placeholder='Повторите пароль *'/>
                                         {errors.repeatedPassword && touched.repeatedPassword ? <div className={styles.textError}>{errors?.repeatedPassword}</div> : null}
                                     </div>
@@ -188,22 +188,30 @@ export default function UserAccount() {
                                 {code ? 'Ваш код' : 'Получить код'}
                             </Button>
 
-                            <p className={styles.code}>{code}</p>
+                            <textarea value={code} id='target' disabled className={`${styles.code} ${styles.codeTextArea}`}/>
                         </div>
 
                         {code ? <div className={styles.codeWrapper} style={{marginTop: '10px'}}>
                             <Button 
                                 classes={{root:styles.btnCode}}
-                                onClick={async e => {
-                                    await navigator.clipboard.writeText(code);
-                                    setCopy(true)
+                                onClick={async () => {
+                                    if(navigator.clipboard){
+                                        await navigator.clipboard.writeText(code);
+                                        setCopy(true)
+                                    }
+                                    else{
+                                        const target = document.querySelector('#target');
+                                        target.select();
+                                        document.execCommand('copy');
+                                        setCopy(true);
+                                    }
                                 }}
                             >
                                 {copy ? 'Готово! :)' : 'Копировать код' }
                             </Button>
 
-                            <p className={styles.code}>Скорее копируй наш код, и переходи в наш телеграм бот <a style={{textDecoration:'none'}} href='http://t.me/webjoxhackathonbot'>@HACKATHON</a> <br/>
-                             и начни получать уведомления о самом крутом Хакатоне!</p>
+                            <p className={styles.code}>{copy ? <>Молодчина, теперь переходи в телеграм <a style={{textDecoration:'none'}} href='http://t.me/webjoxhackathonbot'>@HACKATHON</a><br/> и получай наши мега-крутые уведомления!</> : <>Скорее копируй наш код, и переходи в наш телеграм бот <a style={{textDecoration:'none'}} href='http://t.me/webjoxhackathonbot'>@HACKATHON</a> <br/>
+                             и начни получать уведомления о самом крутом Хакатоне!</>}</p>
                         </div> : null}
                 </div>}
 

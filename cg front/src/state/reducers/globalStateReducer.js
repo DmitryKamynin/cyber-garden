@@ -1,5 +1,15 @@
 export const globalStateReducer = (currentState, { type, data, schedule }) => {
     switch (type) {
+        case 'SUCCESS_MENTORS':
+            return {
+                ...currentState,
+                mentors: data,
+            }
+        case 'SUCCESS_SESSION':
+            return {
+                ...currentState,
+                sessions: data,
+            }
         case 'SUCCESS_TEAM':
             return {
                 ...currentState,

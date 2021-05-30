@@ -1,0 +1,96 @@
+.wrapper{
+    margin:0px 40px;
+    margin-top: 40px;
+}
+    .title{
+        color: #242424;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+        .description{
+            color:#358F15;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 10px;
+        }
+        .wrapper{
+            margin:0px 40px;
+            margin-top: 40px;
+        }
+            .title,.yourSchedule, .sessionTitle{
+                color: #242424;
+                font-weight: 500;
+                font-size: 26px;
+                line-height: 20px;
+                margin-bottom: 20px;
+            }
+            .sessionTitle{
+                font-size: 16px;
+                margin-bottom: 10px;
+                margin-top: 30px;
+            }
+            .yourSchedule{
+                font-weight: 400;
+                font-size: 16px;
+            }
+            .selectedRow{
+                background-color: #1b70498a !important;
+                color: #fff !important
+            }
+            .reservation{
+                background-color: #d462625e !important;     
+            }
+            .taken{
+                background-color: #d8ba3c78 !important;     
+            }
+            .tooltipRoot{
+                background-color: #358F15 !important;
+                color: #fff !important;
+                font-size: 14px !important;
+                cursor: pointer !important;
+            }
+            .btnSucces{
+                background-color: #327C17 !important;
+                border-radius: 4px !important;
+                color: #fff !important;
+            }
+            .btnDenided{
+                background-color: #7c1717 !important;
+                border-radius: 4px !important;
+                color: #fff !important;
+            }
+            .sliderWrapper{
+                display: flex;
+                align-items: flex-end;
+                height: 57px;
+            }
+        
+            .question{
+                margin-top: 10px;
+                color:#358F15;
+                font-size: 16px;
+                line-height: 20px;
+            }
+            .field{
+                box-sizing: border-box;
+                outline: none;
+                color: #242424;
+                width: 100%;
+                flex: 1 1 100%;
+                display: block;
+                background-color: transparent;
+                border: 1px solid #C7C7C7;
+                font-size: 16px;
+                padding: 8px 10px;
+                border-radius: 4px;
+                margin-bottom: 12px;
+            }
+        
+        @media screen and (max-width: 480px) {
+            .wrapper{
+                margin:0px;
+                margin-top: 30px;
+            }
+        }

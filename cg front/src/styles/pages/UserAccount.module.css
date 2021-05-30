@@ -6,6 +6,14 @@
         display: flex;
         justify-content: space-between;
     }
+        .fieldContainer{
+            position: relative;
+            margin-right: 10px;
+            width: 100%;
+        }
+        .fieldWrapper .fieldContainer:last-child{
+            margin-right: 0px !important;
+        }
 
     .title{
         color: #242424;
@@ -83,3 +91,32 @@
             font-size: 16px;
             line-height: 20px;
         }
+        .codeTextArea{
+            box-sizing: border-box;
+            max-width: 221px;
+            min-width: 221px;
+            min-height: 45px;
+            max-height: 45px;
+            border:none;
+            resize: none;
+            outline: none;
+            background-color: transparent;
+        }
+
+@media screen and (max-width: 480px) {
+    .fieldWrapper{
+        flex-wrap: wrap;
+    }
+    .fieldContainer{
+        margin-right: 0px !important;
+    }
+    .codeWrapper{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+    .code{
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+}
